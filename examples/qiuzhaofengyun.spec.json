@@ -1,0 +1,23 @@
+{
+  "title": "秋招风云 · 完整流程脚本板",
+  "heading": "秋招风云 · 完整流程脚本板",
+  "intro": "6 个关键界面按顺序排成一排，每个手机框都是<strong style=\"color:var(--ink)\">线上真实模拟器</strong>，加载后自动驱动到对应状态。拿它当重设计的底板：一眼看全流程，逐屏改。点任意框右下角 ↻ 重新驱动，左下角「单开」进入该屏专注编辑。",
+  "foot": "数据源：<code>https://qiuzhaofengyun.vercel.app/simulator/?stage=…</code> · 每屏由 <code>?stage</code> 参数自驱动（boot / track / sim / pipeline / event / endgame）· 流程脚本板由 <code>flow-storyboard</code> skill 生成",
+  "context": "这是 <strong>flow-storyboard</strong> skill 的真实产物：把一个产品的完整用户旅程，铺成一排<strong>会自己跑起来的 iPhone 实机框</strong>。每一框都是同一个线上 App，靠 URL 里的 <code>?stage=</code> 参数把自己开机到对应那一屏——第 1 框开机建档，第 2 框选定申报方向，一直到最后的结算卡。它既是<strong>活的</strong>（每框都是真应用，永不和线上版本脱节），又是<strong>整条流程一眼看全</strong>（一次扫过 boot → … → endgame）。所以它是重设计的最佳底板：先看清屏与屏之间的关系，挑出最弱的一屏，再点「单开」把那一屏单独打开、专注打磨。",
+  "base": "https://qiuzhaofengyun.vercel.app/simulator/",
+  "paramKey": "stage",
+  "bootFlag": "sb=1",
+  "tools": [
+    { "label": "▲ 打开完整模拟器", "href": "https://qiuzhaofengyun.vercel.app/simulator/" },
+    { "label": "叙事版", "href": "https://qiuzhaofengyun.vercel.app/" },
+    { "label": "放置版", "href": "https://qiuzhaofengyun.vercel.app/paperclip/" }
+  ],
+  "screens": [
+    { "stage": "boot",     "name": "建档",      "param": "",                "desc": "档案封面：身份卡（院校 / 性格 / 吐槽）+ 重新建档 + 申报方向网格" },
+    { "stage": "track",    "name": "申报",      "param": "?stage=track",    "desc": "选定志愿方向（默认高亮「码农」），受理按钮点亮" },
+    { "stage": "sim",      "name": "主界面",    "param": "?stage=sim",      "desc": "受理后主控台：周次 / 录用 / 在办 / 精力 + 能力评定 + 行动坞" },
+    { "stage": "pipeline", "name": "能力+梯子", "param": "?stage=pipeline", "desc": "聚焦能力评定表 + 业务流转（在办公司进度梯子），隐藏底坞" },
+    { "stage": "event",    "name": "通知书",    "param": "?stage=event",    "desc": "推进一周后弹出「受理通知 · NOTICE」事件层" },
+    { "stage": "endgame",  "name": "结算卡",    "param": "?stage=endgame",  "desc": "秋招结算：人格标签 + 段位 / offer / 生活费评分卡" }
+  ]
+}

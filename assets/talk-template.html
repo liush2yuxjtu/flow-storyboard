@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TITLE__</title>
+<!-- talk-html-meta {"kind":"flow-storyboard","generator":"flow-storyboard --talk"} -->
+<style>
+  :root{
+    --bg:#0c0f17; --bg2:#11151f; --ink:#eef1f7; --muted:#8b95a8;
+    --line:#222b3d; --gold:#e9c46a; --teal:#4cc9b0; --accent:#6b8cff;
+    --phoneW:390px; --phoneH:844px; --bezel:13px; --scale:.6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:
+      radial-gradient(900px 500px at 12% -8%,#1a2440 0%,transparent 60%),
+      radial-gradient(900px 500px at 95% 0%,#241a3a 0%,transparent 55%),
+      var(--bg);
+    color:var(--ink); padding:30px 0 60px;
+  }
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  .head h1{font-size:27px;font-weight:800;letter-spacing:.4px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .head .live{font-size:11px;font-weight:800;color:#0c0f17;background:var(--teal);padding:4px 10px;border-radius:999px;
+    text-transform:uppercase;letter-spacing:.5px;display:inline-flex;align-items:center;gap:6px}
+  .head .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#0c0f17;animation:bl 1.4s infinite}
+  @keyframes bl{50%{opacity:.25}}
+  .head .sub{color:var(--muted);font-size:14.5px;margin-top:12px;max-width:780px;line-height:1.7}
+  .head .tools{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+  .tbtn{font-size:12.5px;font-weight:600;color:var(--ink);background:var(--bg2);border:1px solid var(--line);
+    padding:8px 14px;border-radius:9px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:.18s}
+  .tbtn:hover{border-color:var(--accent);transform:translateY(-1px)}
+
+  .explain{margin:26px auto 4px;display:grid;grid-template-columns:1fr;gap:18px}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);border:1px solid var(--line);
+    border-radius:14px;padding:20px 22px}
+  .card h2{font-size:15px;font-weight:800;letter-spacing:.3px;color:var(--gold);margin-bottom:12px;
+    text-transform:uppercase}
+  .card .body{color:#c7cedd;font-size:14px;line-height:1.75}
+  .card .body code{color:#a9c0ff;background:#0c1322;border:1px solid var(--line);padding:1.5px 6px;border-radius:5px;
+    font-family:ui-monospace,Menlo,monospace;font-size:12.5px}
+  .steps{list-style:none;counter-reset:s;display:grid;gap:10px}
+  .steps li{display:flex;gap:12px;align-items:flex-start;padding:11px 13px;background:var(--bg2);
+    border:1px solid var(--line);border-radius:11px}
+  .steps li .n{counter-increment:s;flex:none;width:25px;height:25px;border-radius:7px;
+    background:linear-gradient(135deg,var(--gold),#d98c3f);color:#1a1206;font-weight:900;font-size:13px;
+    display:flex;align-items:center;justify-content:center}
+  .steps li .n::before{content:counter(s)}
+  .steps li .t b{font-size:14px;font-weight:800;display:block}
+  .steps li .t .rt{font-size:11px;color:var(--muted);font-family:ui-monospace,Menlo,monospace}
+  .steps li .t span{font-size:12.5px;color:#aeb7c8;line-height:1.55;display:block;margin-top:3px}
+
+  .stripwrap{margin-top:28px}
+  .stripwrap .lh{display:flex;align-items:center;gap:12px;margin:0 0 4px;padding:0 4px}
+  .stripwrap .lh b{font-size:16px;font-weight:800}
+  .stripwrap .lh span{font-size:12px;color:var(--muted)}
+  .scroller{overflow-x:auto;overflow-y:hidden;padding:18px 4px 8px;-webkit-overflow-scrolling:touch}
+  .row{display:flex;gap:18px;width:max-content;align-items:flex-start}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:0}
+  .label{display:flex;align-items:center;gap:9px;margin-bottom:12px;width:calc(var(--phoneW) * var(--scale) + 6px)}
+  .label .n{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#d98c3f);
+    color:#1a1206;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none}
+  .label .txt b{font-size:15px;font-weight:800;display:block}
+  .label .txt span{font-size:11px;color:var(--muted);font-family:ui-monospace,Menlo,monospace}
+  .phone-wrap{width:calc((var(--phoneW) + var(--bezel)*2) * var(--scale));
+    height:calc((var(--phoneH) + var(--bezel)*2) * var(--scale));position:relative}
+  .phone{position:absolute;top:0;left:0;transform-origin:top left;transform:scale(var(--scale));
+    width:calc(var(--phoneW) + var(--bezel)*2);height:calc(var(--phoneH) + var(--bezel)*2);
+    background:#05070c;border-radius:46px;padding:var(--bezel);
+    box-shadow:0 0 0 2px #2b3650, 0 26px 60px rgba(0,0,0,.55), inset 0 0 0 6px #0a0d14}
+  .screen{position:relative;width:var(--phoneW);height:var(--phoneH);border-radius:34px;overflow:hidden;background:#e9dcbe}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:26px;background:#05070c;
+    border-bottom-left-radius:16px;border-bottom-right-radius:16px;z-index:5}
+  iframe{width:var(--phoneW);height:var(--phoneH);border:0;display:block;background:#e9dcbe}
+  .reload{position:absolute;right:10px;bottom:10px;z-index:6;width:34px;height:34px;border-radius:50%;
+    border:0;background:rgba(12,15,23,.82);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.4)}
+  .reload:hover{background:#1c2336}
+  .open{position:absolute;left:10px;bottom:10px;z-index:6;height:34px;padding:0 12px;border-radius:17px;
+    border:0;background:rgba(12,15,23,.82);color:#fff;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;
+    display:flex;align-items:center;gap:5px;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+  .open:hover{background:#1c2336}
+  .cap{margin-top:12px;width:calc(var(--phoneW) * var(--scale) + 6px);
+    font-size:11.5px;color:var(--muted);line-height:1.5;text-align:center}
+
+  .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;line-height:1.7}
+  .foot code{color:#a9c0ff;background:#0c1322;border:1px solid var(--line);padding:2px 6px;border-radius:5px;font-family:ui-monospace,Menlo,monospace}
+  .foot .links{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .copybtn{font-size:12.5px;font-weight:700;color:#0c0f17;background:var(--gold);border:0;padding:9px 15px;
+    border-radius:9px;cursor:pointer}
+  .copybtn:hover{filter:brightness(1.06)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <h1>__HEADING__ <span class="live">live · 实时自驱动</span></h1>
+      <p class="sub">__INTRO__</p>
+      <div class="tools">
+        <button class="tbtn" onclick="reloadAll()">↻ 全部重新驱动</button>
+        __TOOLBUTTONS__
+      </div>
+    </div>
+
+    <div class="explain">
+      <div class="card">
+        <h2>这块板是什么</h2>
+        <div class="body">__CONTEXT__</div>
+      </div>
+      <div class="card">
+        <h2>逐屏看流程</h2>
+        <ol class="steps">__SCREENTABLE__</ol>
+      </div>
+    </div>
+
+    <div class="stripwrap">
+      <div class="lh"><b>实时脚本板</b><span>每个手机框都是线上真实页面，加载即自驱动到对应状态 · 横向滚动看全流程</span></div>
+      <div class="scroller"><div class="row" id="row"></div></div>
+    </div>
+
+    <div class="foot">
+      <div>__FOOT__</div>
+      <div class="links">
+        <button class="copybtn" id="copy">📋 复制「继续改这块板」提示词</button>
+        <a class="tbtn" id="rendered-link" href="__TLH_RENDERED_URL__" target="_blank">🔗 在线预览页</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+  var BASE = "__BASE__";
+  var PARAM = "__PARAMKEY__";
+  var BOOT_FLAG = "__BOOTFLAG__";
+  var SCREENS = __SCREENS__;
+
+  function bust(){ return "&_=" + (performance.now()|0); }
+  function urlFor(s){
+    var u = BASE + (s.param || "");
+    if (BOOT_FLAG){ u += (u.indexOf("?")<0 ? "?" : "&") + BOOT_FLAG; }
+    u += (u.indexOf("?")<0 ? "?" : "&") + "" + bust();
+    return u;
+  }
+  function plainUrl(s){ return BASE + (s.param || ""); }
+
+  var row = document.getElementById("row");
+  SCREENS.forEach(function(s, i){
+    var tag = s.stage ? (PARAM + "=" + s.stage) : (s.param || "(default)");
+    var cell = document.createElement("div");
+    cell.className = "cell";
+    cell.innerHTML =
+      '<div class="label"><div class="n">'+(i+1)+'</div>'+
+        '<div class="txt"><b>'+s.name+'</b><span>'+tag+'</span></div></div>'+
+      '<div class="phone-wrap"><div class="phone"><div class="screen">'+
+        '<div class="notch"></div>'+
+        '<iframe loading="lazy" id="if-'+i+'" src="'+urlFor(s)+'" title="'+s.name+'"></iframe>'+
+        '<a class="open" href="'+plainUrl(s)+'" target="_blank">⤢ 单开</a>'+
+        '<button class="reload" data-i="'+i+'" title="重新驱动">↻</button>'+
+      '</div></div></div>'+
+      '<div class="cap">'+s.desc+'</div>';
+    row.appendChild(cell);
+  });
+
+  row.addEventListener("click", function(e){
+    var b = e.target.closest(".reload"); if(!b) return;
+    var i = +b.dataset.i;
+    document.getElementById("if-"+i).src = urlFor(SCREENS[i]);
+  });
+  function reloadAll(){ SCREENS.forEach(function(s,i){ document.getElementById("if-"+i).src = urlFor(s); }); }
+  window.reloadAll = reloadAll;
+
+  // "继续修改" copy-prompt — self-referential once published (publish.sh injects the URLs).
+  var copy = document.getElementById("copy");
+  if (copy) copy.addEventListener("click", function(){
+    var lines = SCREENS.map(function(s,i){ return (i+1)+". "+s.name+" ("+(s.param||"default")+") — "+s.desc; });
+    var prompt =
+      "这是一个 flow-storyboard 流程脚本板（在线预览：__TLH_RENDERED_URL__ ）。\\n" +
+      "基址 BASE = "+BASE+"\\n屏幕顺序：\\n" + lines.join("\\n") +
+      "\\n\\n请帮我对其中某一屏做重设计，或调整流程顺序/文案。先告诉我你建议先改哪一屏、为什么。";
+    navigator.clipboard.writeText(prompt).then(function(){
+      copy.textContent = "✓ 已复制，去新会话粘贴"; setTimeout(function(){ copy.textContent="📋 复制「继续改这块板」提示词"; }, 2200);
+    });
+  });
+</script>
+</body>
+</html>

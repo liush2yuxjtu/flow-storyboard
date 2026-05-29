@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋招风云 · 完整流程脚本板</title>
+<style>
+  :root{
+    --bg:#0c0f17; --bg2:#11151f; --ink:#eef1f7; --muted:#8b95a8;
+    --line:#222b3d; --gold:#e9c46a; --teal:#4cc9b0; --accent:#6b8cff;
+    --phoneW:390px; --phoneH:844px; --bezel:13px; --scale:.6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:
+      radial-gradient(900px 500px at 12% -8%,#1a2440 0%,transparent 60%),
+      radial-gradient(900px 500px at 95% 0%,#241a3a 0%,transparent 55%),
+      var(--bg);
+    color:var(--ink); padding:30px 0 60px;
+  }
+  .head{max-width:1240px;margin:0 auto 6px;padding:0 28px}
+  .head h1{font-size:26px;font-weight:800;letter-spacing:.4px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .head .live{font-size:11px;font-weight:800;color:#0c0f17;background:var(--teal);padding:4px 10px;border-radius:999px;
+    text-transform:uppercase;letter-spacing:.5px;display:inline-flex;align-items:center;gap:6px}
+  .head .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#0c0f17;animation:bl 1.4s infinite}
+  @keyframes bl{50%{opacity:.25}}
+  .head p{color:var(--muted);font-size:14px;margin-top:10px;max-width:760px;line-height:1.6}
+  .head .tools{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+  .tbtn{font-size:12.5px;font-weight:600;color:var(--ink);background:var(--bg2);border:1px solid var(--line);
+    padding:8px 14px;border-radius:9px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:.18s}
+  .tbtn:hover{border-color:var(--accent);transform:translateY(-1px)}
+
+  .scroller{overflow-x:auto;overflow-y:hidden;padding:18px 28px 8px;-webkit-overflow-scrolling:touch}
+  .row{display:flex;gap:18px;width:max-content;align-items:flex-start}
+
+  .cell{display:flex;flex-direction:column;align-items:center;gap:0}
+  .label{display:flex;align-items:center;gap:9px;margin-bottom:12px;width:calc(var(--phoneW) * var(--scale) + 6px)}
+  .label .n{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#d98c3f);
+    color:#1a1206;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none}
+  .label .txt b{font-size:15px;font-weight:800;display:block}
+  .label .txt span{font-size:11px;color:var(--muted);font-family:ui-monospace,Menlo,monospace}
+
+  /* phone */
+  .phone-wrap{
+    width:calc((var(--phoneW) + var(--bezel)*2) * var(--scale));
+    height:calc((var(--phoneH) + var(--bezel)*2) * var(--scale));
+    position:relative;
+  }
+  .phone{
+    position:absolute;top:0;left:0;transform-origin:top left;transform:scale(var(--scale));
+    width:calc(var(--phoneW) + var(--bezel)*2);height:calc(var(--phoneH) + var(--bezel)*2);
+    background:#05070c;border-radius:46px;padding:var(--bezel);
+    box-shadow:0 0 0 2px #2b3650, 0 26px 60px rgba(0,0,0,.55), inset 0 0 0 6px #0a0d14;
+  }
+  .screen{position:relative;width:var(--phoneW);height:var(--phoneH);border-radius:34px;overflow:hidden;background:#e9dcbe}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:26px;background:#05070c;
+    border-bottom-left-radius:16px;border-bottom-right-radius:16px;z-index:5}
+  iframe{width:var(--phoneW);height:var(--phoneH);border:0;display:block;background:#e9dcbe}
+  .reload{position:absolute;right:10px;bottom:10px;z-index:6;width:34px;height:34px;border-radius:50%;
+    border:0;background:rgba(12,15,23,.82);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.4)}
+  .reload:hover{background:#1c2336}
+  .open{position:absolute;left:10px;bottom:10px;z-index:6;height:34px;padding:0 12px;border-radius:17px;
+    border:0;background:rgba(12,15,23,.82);color:#fff;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;
+    display:flex;align-items:center;gap:5px;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+  .open:hover{background:#1c2336}
+
+  .cap{margin-top:12px;width:calc(var(--phoneW) * var(--scale) + 6px);
+    font-size:11.5px;color:var(--muted);line-height:1.5;text-align:center}
+
+  .foot{max-width:1240px;margin:30px auto 0;padding:0 28px;color:var(--muted);font-size:12px;
+    border-top:1px solid var(--line);padding-top:18px}
+  .foot code{color:#a9c0ff;background:#0c1322;border:1px solid var(--line);padding:2px 6px;border-radius:5px;font-family:ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>秋招风云 · 完整流程脚本板 <span class="live">live · 实时自驱动</span></h1>
+    <p>6 个关键界面按顺序排成一排，每个手机框都是<strong style="color:var(--ink)">线上真实模拟器</strong>，加载后自动驱动到对应状态。拿它当重设计的底板：一眼看全流程，逐屏改。点任意框右下角 ↻ 重新驱动，左下角「单开」进入该屏专注编辑。</p>
+    <div class="tools">
+      <button class="tbtn" onclick="reloadAll()">↻ 全部重新驱动</button>
+      <a class="tbtn" href="https://qiuzhaofengyun.vercel.app/simulator/" target="_blank">▲ 打开完整模拟器</a>
+      <a class="tbtn" href="https://qiuzhaofengyun.vercel.app/" target="_blank">叙事版</a>
+      <a class="tbtn" href="https://qiuzhaofengyun.vercel.app/paperclip/" target="_blank">放置版</a>
+    </div>
+  </div>
+
+  <div class="scroller">
+    <div class="row" id="row"></div>
+  </div>
+
+  <div class="foot">数据源：<code>https://qiuzhaofengyun.vercel.app/simulator/?stage=…</code> · 每屏由 <code>?stage</code> 参数自驱动（boot / track / sim / pipeline / event / endgame）· 流程脚本板由 <code>flow-storyboard</code> skill 生成</div>
+
+<script>
+  var BASE = "https://qiuzhaofengyun.vercel.app/simulator/";
+  var PARAM = "stage";        // query key used to self-drive each screen (e.g. "stage")
+  var BOOT_FLAG = "sb=1";    // optional storyboard flag appended to every url ("" to disable)
+  var SCREENS = [
+  {
+    "stage": "boot",
+    "name": "建档",
+    "param": "",
+    "desc": "档案封面：身份卡（院校 / 性格 / 吐槽）+ 重新建档 + 申报方向网格"
+  },
+  {
+    "stage": "track",
+    "name": "申报",
+    "param": "?stage=track",
+    "desc": "选定志愿方向（默认高亮「码农」），受理按钮点亮"
+  },
+  {
+    "stage": "sim",
+    "name": "主界面",
+    "param": "?stage=sim",
+    "desc": "受理后主控台：周次 / 录用 / 在办 / 精力 + 能力评定 + 行动坞"
+  },
+  {
+    "stage": "pipeline",
+    "name": "能力+梯子",
+    "param": "?stage=pipeline",
+    "desc": "聚焦能力评定表 + 业务流转（在办公司进度梯子），隐藏底坞"
+  },
+  {
+    "stage": "event",
+    "name": "通知书",
+    "param": "?stage=event",
+    "desc": "推进一周后弹出「受理通知 · NOTICE」事件层"
+  },
+  {
+    "stage": "endgame",
+    "name": "结算卡",
+    "param": "?stage=endgame",
+    "desc": "秋招结算：人格标签 + 段位 / offer / 生活费评分卡"
+  }
+];
+
+  function bust(){ return "&_=" + (performance.now()|0); }
+  function urlFor(s){
+    var u = BASE + (s.param || "");
+    if (BOOT_FLAG){ u += (u.indexOf("?")<0 ? "?" : "&") + BOOT_FLAG; }
+    u += (u.indexOf("?")<0 ? "?" : "&") + "" + bust();
+    return u;
+  }
+  function plainUrl(s){ return BASE + (s.param || ""); }
+
+  var row = document.getElementById("row");
+  SCREENS.forEach(function(s, i){
+    var tag = s.stage ? (PARAM + "=" + s.stage) : (s.param || "(default)");
+    var cell = document.createElement("div");
+    cell.className = "cell";
+    cell.innerHTML =
+      '<div class="label"><div class="n">'+(i+1)+'</div>'+
+        '<div class="txt"><b>'+s.name+'</b><span>'+tag+'</span></div></div>'+
+      '<div class="phone-wrap"><div class="phone"><div class="screen">'+
+        '<div class="notch"></div>'+
+        '<iframe loading="lazy" id="if-'+i+'" src="'+urlFor(s)+'" title="'+s.name+'"></iframe>'+
+        '<a class="open" href="'+plainUrl(s)+'" target="_blank">⤢ 单开</a>'+
+        '<button class="reload" data-i="'+i+'" title="重新驱动">↻</button>'+
+      '</div></div></div>'+
+      '<div class="cap">'+s.desc+'</div>';
+    row.appendChild(cell);
+  });
+
+  row.addEventListener("click", function(e){
+    var b = e.target.closest(".reload"); if(!b) return;
+    var i = +b.dataset.i;
+    document.getElementById("if-"+i).src = urlFor(SCREENS[i]);
+  });
+
+  function reloadAll(){
+    SCREENS.forEach(function(s,i){ document.getElementById("if-"+i).src = urlFor(s); });
+  }
+  window.reloadAll = reloadAll;
+</script>
+</body>
+</html>
