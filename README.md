@@ -99,6 +99,18 @@ Paste this into a Claude Code / Codex session and fill the three blanks:
 最后把 rendered（htmlpreview）链接发我。
 ```
 
+## Showcase — VC kit
+
+A full "VC three-piece kit" generated **from this repo** with [pitchkit](https://github.com/EricSun0218/pitchkit),
+where the demo footage is a real screen-recording of the live board panning across
+the six [秋招风云](https://qiuzhaofengyun.vercel.app/simulator/) frames:
+
+| Piece | File / link |
+|---|---|
+| 🎬 Promo video (mp4) | [`docs/flow-storyboard-demo.mp4`](docs/flow-storyboard-demo.mp4) |
+| 🖥️ Design website | **live:** https://liush2yuxjtu.github.io/flow-storyboard/ · [`docs/index.html`](docs/index.html) |
+| 📊 Pitch deck (editable pptx) | [`docs/flow-storyboard-deck.pptx`](docs/flow-storyboard-deck.pptx) |
+
 ## What "good" looks like
 
 - All N frames load the real app and visibly settle into *different* states. If
